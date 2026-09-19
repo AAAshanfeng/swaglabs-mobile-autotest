@@ -1,0 +1,26 @@
+# Python 缓存
+__pycache__/
+*.py[cod]
+
+# 虚拟环境
+.venv/
+venv/
+
+# pytest 缓存
+.pytest_cache/
+
+# Allure 运行产物（可随时重新生成，不入库）
+allure-results/
+allure-report/
+
+# 失败自动截图产物
+screenshots/
+
+# IDE
+.idea/
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# 注意：docs/（在线报告）与 docs/images/（README 截图）需要提交，故此处不屏蔽 *.png
