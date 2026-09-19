@@ -145,21 +145,13 @@ allure serve ./allure-results   # 浏览器自动打开交互式报告
 
 > 以下截图基于最新一次执行结果（44 条用例全部通过，总时长约 13m 52s）。
 
-**总览**：通过率圆环 100% + 用例总数 44 + Suites 小部件，3 秒得到「多少用例、是否全绿、跑多久」的结论。
-
 ![测试报告总览](./docs/images/report-overview.png)
-
-**模块化套件**：7 个测试文件展开到第二级，各自用例数一目了然（`test_permission` 下 14 条尤为显眼），直接摊开模块化测试设计。
 
 ![模块化测试套件](./docs/images/report-suites.png)
 
-**参数化 + adb 断言 + 日志**：从套件点进 `test_permission_deny[QR code]`，Parameters 展示 location / QR code 参数化，Steps 记录执行过程，Log output 呈现 `logger.info` 输出——一张图同时体现三项技术含量。
-
-![用例详情：参数化与步骤](./docs/images/report-detail.png)
-
 ![用例详情：日志输出](./docs/images/report-detail-log.png)
 
-### 发布为在线链接（GitHub Pages，供面试官一键查看）
+### 发布为在线链接
 1. 跑用例生成结果：`pytest`
 2. 用 `--single-file` 生成**自包含**报告（JS/CSS/数据全部内联进一个 `index.html`）：
    ```bash
@@ -244,15 +236,6 @@ screenshots/
 | special_001 / 002 | App 固定竖屏，横屏后不适配 | 属产品设计（锁定方向），转为竖屏健壮性验证 |
 
 > 对于横竖屏问题，需要结合实际产品需求判断是否属于缺陷；本项目重点验证 App 在固定竖屏限制下是否能够保持正常运行。
-
-### 后续改进计划
-
-- 将权限 allow 断言收敛为按权限名精确定位状态行（当前在整份 `dumpsys` 输出中搜 `granted=true` 子串，范围偏宽）。
-- 补充 `@allure.feature` / `@allure.story` 注解，使报告具备业务维度分组。
-- 接入 GitHub Actions，实现提交触发自动执行与报告发布。
-- 引入多设备并行执行，缩短全量用例总耗时。
-
-
 
 ## 十、亮点小结
 
