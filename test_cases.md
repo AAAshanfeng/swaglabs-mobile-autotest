@@ -1,6 +1,6 @@
 # Sauce Labs Sample App 测试用例文档
 
-被测对象：Sauce Labs 官方电商 Demo App（Android）
+被测对象：Sauce Labs 官方电商 Demo App（Android）<br>
 测试类型：功能测试 + 权限测试 + 专项测试（中断 / 弱网 / 兼容性）
 
 ---

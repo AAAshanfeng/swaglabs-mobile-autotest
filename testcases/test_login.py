@@ -1,5 +1,4 @@
 from pages.login_page import LoginPage
-from logging_config import logger
 
 
 def test_login_success(driver):
