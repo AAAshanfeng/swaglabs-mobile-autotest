@@ -75,22 +75,6 @@ class ProductPage(BasePage, DeviceActions):
     def get_all_product_image(self):
         return self.driver.find_elements(*self.product_image)
 
-    # def get_all_product_count(self):
-    #     """获得商品页面的商品数量"""
-    #     names = set()
-    #
-    #     while True:
-    #         elements = self.get_all_product_title()
-    #         for el in elements:
-    #             if el.text:
-    #                 names.add(el.text)
-    #
-    #         # names = {el.text for el in elements if el.text}
-    #
-    #         self.swipe_once()
-    #         names = {el.text for el in elements if el.text}
-    #
-    #         return len(names)
     def get_all_product_count(self):
         """获得商品页面的商品数量"""
         names = set()
