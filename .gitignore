@@ -22,5 +22,3 @@ screenshots/
 # 系统文件
 .DS_Store
 Thumbs.db
-
-# 注意：docs/（在线报告）与 docs/images/（README 截图）需要提交，故此处不屏蔽 *.png

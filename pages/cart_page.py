@@ -1,5 +1,3 @@
-from selenium.webdriver.support.wait import WebDriverWait
-
 from pages.base_page import BasePage
 from appium.webdriver.common.appiumby import AppiumBy
 from selenium.webdriver.support import expected_conditions as EC
@@ -7,7 +5,6 @@ from utils.device_actions import DeviceActions
 
 
 class CartPage(BasePage, DeviceActions):
-
     cart_title = (AppiumBy.XPATH, "//android.widget.TextView[@text='YOUR CART']")
     cart_item = (AppiumBy.ACCESSIBILITY_ID, "test-Item")
     product_name = (AppiumBy.XPATH, '//android.view.ViewGroup[@content-desc="test-Description"]''/android.widget'
@@ -26,7 +23,6 @@ class CartPage(BasePage, DeviceActions):
         elements = self.wait.until(
             EC.visibility_of_all_elements_located(self.cart_title)
         )
-
         return len(elements) > 0
 
     def get_all_cart_item(self):
@@ -76,13 +72,12 @@ class CartPage(BasePage, DeviceActions):
             }
         )
         btn = self.wait.until(
-            lambda d: d.find_elements(
-                AppiumBy.ACCESSIBILITY_ID, "test-REMOVE"
-            )[0]
-            if d.find_elements(AppiumBy.ACCESSIBILITY_ID, "test-REMOVE")[0].is_displayed()
-            else False
+            lambda d: next(
+                (element for element in d.find_elements(*self.remove_btn)
+                 if element.is_displayed()),
+                False
+            )
         )
-
         btn.click()
 
     def is_cart_empty(self):
