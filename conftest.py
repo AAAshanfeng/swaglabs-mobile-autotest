@@ -34,7 +34,10 @@ def login_in_driver(driver):
 
 @pytest.fixture()
 def reset_permission(driver):
-    subprocess.run(["adb", "shell", "pm", "clear", "com.swaglabsmobileapp"])
+    subprocess.run(
+        ["adb", "shell", "pm", "clear", "com.swaglabsmobileapp"],
+        check=True  # ADB 命令以非零状态码退出会抛出异常
+    )
     driver.activate_app("com.swaglabsmobileapp")
 
 
@@ -47,7 +50,14 @@ def pytest_runtest_makereport(item):
         driver = item.funcargs.get("login_in_driver")
 
         if driver:
-            os.makedirs("screenshots", exist_ok=True)
+            screenshots_dir = os.path.join(
+                os.path.dirname(os.path.abspath(__file__)),
+                "screenshots"
+            )
+            os.makedirs(screenshots_dir, exist_ok=True)
 
-            filename = f"screenshots/{item.name}_{int(time.time())}.png"
+            filename = os.path.join(
+                screenshots_dir,
+                f"{item.name}_{int(time.time())}.png"
+            )
             driver.save_screenshot(filename)
