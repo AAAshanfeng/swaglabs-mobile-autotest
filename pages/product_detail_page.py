@@ -25,8 +25,6 @@ class ProductDetailPage(BasePage):
     def get_detail_price(self):
         return self.driver.find_element(*self.detail_price).text
 
-
-
     def click_add_btn(self):
         self.driver.find_element(*self.add_to_cart_btn).click()
 
