@@ -241,13 +241,8 @@ def test_drawing_permission_revoked_manually(reset_permission, login_in_driver):
     subprocess.run([
         "adb", "shell", "pm", "revoke",
         "com.swaglabsmobileapp",
-        "android.permission.READ_MEDIA_IMAGES"
-    ])
-
-    subprocess.run([
-        "adb", "shell", "pm", "clear",
-        "com.swaglabsmobileapp"
-    ])
+        "android.permission.WRITE_EXTERNAL_STORAGE"
+    ], check=True)
 
     login_in_driver.terminate_app("com.swaglabsmobileapp")
     login_in_driver.activate_app("com.swaglabsmobileapp")
@@ -259,4 +254,4 @@ def test_drawing_permission_revoked_manually(reset_permission, login_in_driver):
     permission.drawing_line(400, 1000, 500, 1800)
     permission.click_draw_save()
     time.sleep(2)
-    assert permission.is_permission_dialog_exist() is True
+    assert permission.is_drawing_permission_dialog_exist() is True

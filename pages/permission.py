@@ -15,6 +15,8 @@ class PermissionPage(BasePage):
     draw_clear = (AppiumBy.ACCESSIBILITY_ID, "test-CLEAR")
     draw_save = (AppiumBy.ACCESSIBILITY_ID, "test-SAVE")
 
+    drawing_permission_dialog = (AppiumBy.ID, "android:id/parentPanel")
+
     def click_permission_allow_foreground_only(self):
         self.wait.until(
             EC.element_to_be_clickable(self.permission_allow_foreground_only)
@@ -34,6 +36,15 @@ class PermissionPage(BasePage):
         try:
             self.wait.until(
                 EC.visibility_of_element_located(self.permission_dialog)
+            )
+            return True
+        except TimeoutException:
+            return False
+
+    def is_drawing_permission_dialog_exist(self):
+        try:
+            self.wait.until(
+                EC.visibility_of_element_located(self.drawing_permission_dialog)
             )
             return True
         except TimeoutException:
