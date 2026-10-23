@@ -14,7 +14,7 @@ class MenuPage(BasePage):
 
     webview_url = (AppiumBy.ACCESSIBILITY_ID, "test-enter a https url here...")
     site_btn = (AppiumBy.ACCESSIBILITY_ID, "test-GO TO SITE")
-    bing_page = (AppiumBy.XPATH, '//android.webkit.WebView[@text="搜索 - Microsoft 必应"]')
+    bing_page = (AppiumBy.XPATH, '//android.webkit.WebView[@text="Search - Microsoft Bing"]')
 
     def click_webview_btn(self):
         self.wait.until(
