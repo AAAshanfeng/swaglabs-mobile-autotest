@@ -1,5 +1,5 @@
 import base64
-
+from selenium.common.exceptions import WebDriverException
 
 class DeviceActions:
 
@@ -17,8 +17,15 @@ class DeviceActions:
         self.driver.press_keycode(82)
 
     # 屏幕方向切换
-    def rotate_landscape(self):     # 把设备切换横屏
-        self.driver.orientation = "LANDSCAPE"
+    # def rotate_landscape(self):     # 把设备切换横屏
+    #     self.driver.orientation = "LANDSCAPE"
+
+    def rotate_landscape(self):
+        try:
+            self.driver.orientation = "LANDSCAPE"
+            return True
+        except WebDriverException:
+            return False
 
     def rotate_portrait(self):      # 切回竖屏
         self.driver.orientation = "PORTRAIT"
