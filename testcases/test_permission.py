@@ -142,12 +142,7 @@ def test_permission_revoked_manually(reset_permission, login_in_driver, btn_meth
         "adb", "shell", "pm", "revoke",
         "com.swaglabsmobileapp",
         find_permission
-    ])
-
-    subprocess.run([
-        "adb", "shell", "pm", "clear",
-        "com.swaglabsmobileapp"
-    ])
+    ], check=True)
 
     login_in_driver.terminate_app("com.swaglabsmobileapp")
     login_in_driver.activate_app("com.swaglabsmobileapp")
